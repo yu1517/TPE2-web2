@@ -35,13 +35,13 @@ class ApiBookController {
         
     }
 
-    public function addBook($params = null){
+    public function insertBook($params = null){
         $book = $this->getData();
 
         if (empty($book->title) || empty($book->genre)) {
             $this->view->response("Complete los datos solicitados", 400);
         } else {
-            $id = $this->model->insertBook($book->title, $book->genre);
+            $id = $this->model->insert($book->title, $book->genre);
             $book = $this->model->getBook($id);
             $this->view->response($book, 201);
         }

@@ -38,18 +38,18 @@ class BookModel {
 
     //Inserta una tarea en la base de datos.
 
-    public function insertBook($title, $genre) {
+    public function insert($title, $genre) {
 
-        $query = $this->db->prepare("INSERT INTO books (title, genre) VALUES (?, ?)");
-        $query->execute([$title, $genre]);
+        $query = $this->db->prepare("INSERT INTO books (title, genre, id_author, imagen) VALUES (?, ?, ?, ?)");
+        $query->execute([$title, $genre, false, false]);
 
         return $this->db->lastInsertId();
     }
 
-    public function insertEditBook($title, $genre, $id_author){        
-            $query = $this->db->prepare("UPDATE `books` SET title=?, genre=? WHERE id=?");
-            $query->execute([$title, $genre, $id_author]);
-    }
+    // public function insertEditBook($title, $genre, $id_author){        
+    //         $query = $this->db->prepare("UPDATE `books` SET title=?, genre=?, id_author=? WHERE id=?");
+    //         $query->execute([$title, $genre, $id_author]);
+    // }
 
     //Elimina una tarea dado su id
     function deleteBookById($id){
