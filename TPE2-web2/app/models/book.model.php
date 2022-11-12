@@ -12,7 +12,7 @@ class BookModel {
         //1. Abro la conexion
 
         //2.Enviar la consulta(2 sub pasos: prepare y execte)
-        $query = $this->db->prepare("SELECT * FROM books");
+        $query = $this->db->prepare("SELECT books.id, books.id_author, books.title, books.genre, books.imagen, authors.name FROM books INNER JOIN authors ON books.id_author = authors.id_author");
         $query->execute();
 
         //3. Obtengo la respuesta con un fetchAll(porque)
@@ -29,28 +29,31 @@ class BookModel {
         return $books;
     }
 
-    // function getRegisterBookById($id){
-    //     $query = $this->db->prepare("SELECT * FROM books where `id`=$id");
-    //     $query->execute();
-    //     $bookRegister = $query->fetchAll(PDO::FETCH_OBJ);
-    //     return $bookRegister;
-    // }
+    public function order($sort , $orderBy){
+        $query = $this->db->prepare("SELECT books.id, books.id_author, books.title, books.genre, books.imagen, authors.name FROM books INNER JOIN authors ON books.id_author = authors.id_author ORDER BY $sort $orderBy");
+        $query->execute();
+
+        //3. Obtengo la respuesta con un fetchAll(porque)
+        $orderedBooks = $query->fetchAll(PDO::FETCH_OBJ); // devuelve un arreglo de objetos
+
+        return $orderedBooks;
+    }
 
     //Inserta una tarea en la base de datos.
 
-    public function insert($title, $genre) {
+    public function insert($title, $genre, $id_author) {
 
-        $query = $this->db->prepare("INSERT INTO books (title, genre, id_author, imagen) VALUES (?, ?, ?, ?)");
-        $query->execute([$title, $genre, false, false]);
+        $query = $this->db->prepare("INSERT INTO books (title, genre, id_author) VALUES (?, ?, ?)");
+        $query->execute([$title, $genre, $id_author]);
 
         return $this->db->lastInsertId();
     }
-
-    // public function insertEditBook($title, $genre, $id_author){        
-    //         $query = $this->db->prepare("UPDATE `books` SET title=?, genre=?, id_author=? WHERE id=?");
-    //         $query->execute([$title, $genre, $id_author]);
-    // }
-
+    
+    public function updateBook ($id, $title, $genre, $id_author){
+        $query = $this->db->prepare("UPDATE `books` SET title=?, genre=?, id_author=? WHERE id=?");
+        $query->execute([$title, $genre, $id_author, $id]);
+    }
+    
     //Elimina una tarea dado su id
     function deleteBookById($id){
         $query = $this->db->prepare('DELETE FROM books WHERE id = ?');
