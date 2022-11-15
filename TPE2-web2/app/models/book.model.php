@@ -21,7 +21,7 @@ class BookModel
     }
 
     public function getAllPages($from, $limit){
-        $query = $this->db->prepare("SELECT books.id, books.id_author, books.title, books.genre, books.imagen, authors.name FROM books INNER JOIN authors ON books.id_author = authors.id_author LIMIT $from,$limit");
+        $query = $this->db->prepare("SELECT books.id, books.id_author, books.title, books.genre, books.imagen, authors.name FROM books INNER JOIN authors ON books.id_author = authors.id_author ORDER BY id ASC LIMIT $from,$limit");
         $query->execute();
         $books = $query->fetchAll(PDO::FETCH_OBJ);
         return $books;
