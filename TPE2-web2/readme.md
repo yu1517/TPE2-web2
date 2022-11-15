@@ -8,7 +8,7 @@ Endpoint de la API: http://localhost/web2/tpe2/TPE2-web2/api/books
 
 * `GET/books`: Accede a la lista completa de libros que estan guardados en la base de dato 'db_tpe'.
 
-*Ordenamiento ASC y DESC
+### *Ordenamiento ASC y DESC
 
  `GET /books?sort=FIELD&orderBY=ORDERTYPE`
   Agregando `?sort=FIELD&orderBy=ORDERTYPE` permite ordenar la lista de manera ascendente o descendente por un campo. El campo se debe especificar en el `sort` y el `orden` deseado en el orderBy.
@@ -16,7 +16,7 @@ Endpoint de la API: http://localhost/web2/tpe2/TPE2-web2/api/books
   * **Ejemplo** `GET /books?sort=title&orderBy=desc`
   Este ejemplo traera el listado de libros por titulo ordenador de forma descendente.
     
-* Paginacion
+### * Paginacion
 
     `GET /books?start=VALUE&limit=VALUE`
     Para utilizar la paginacion debemos ingresar dos valores para nuetras keys "start"(pagina) y "limit"(cantidad de registros que queremos mostras).
