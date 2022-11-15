@@ -18,11 +18,11 @@ Endpoint de la API: http://localhost/web2/tpe2/TPE2-web2/api/books
     
 ### * Paginacion
 
-    `GET /books?start=VALUE&limit=VALUE`
-    Para utilizar la paginacion debemos ingresar dos valores para nuetras keys "start"(pagina) y "limit"(cantidad de registros que queremos mostras).
-    Los datos que ingresamos en paginacion son integer para ambos valores.  
+`GET /books?start=VALUE&limit=VALUE`
+Para utilizar la paginacion debemos ingresar dos valores para nuetras keys "start"(pagina) y "limit"(cantidad de registros que queremos mostras).
+Los datos que ingresamos en paginacion son integer para ambos valores.  
 
-    * **Ejemplo** `GET /books?start=1&limit=4`
+* **Ejemplo** `GET /books?start=1&limit=4`
     ```
         [
             {
